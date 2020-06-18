@@ -15,7 +15,6 @@ class AdmissionForm extends Component{
             patientNumber:'',
             patientDiagnostic:'',
             patientcode: '003',
-            hospitalCode:'003'
         }
 
     };
@@ -36,12 +35,11 @@ class AdmissionForm extends Component{
                 email: this.state.patientEmail,
                 telefono: this.state.patientNumber,
                 fechaCreacion: date,
-                codigoHospital :this.state.hospitalCode,
                 diagnostico: this.state.patientDiagnostic,
                 codigo: this.state.hospitalCode
             }
             patientService.create(data)
-            .then((response)=>console.log(response))
+            .then((response)=>console.log(response.data))
             .catch(error=> console.log(error));
         }
         else alert('rellene todos los campos');
