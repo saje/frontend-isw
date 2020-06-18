@@ -14,24 +14,36 @@ class patientList extends Component{
     componentDidMount(){
         patientService.getAll()
         .then((response)=>{
+            console.log('RESPUESTA GET ALL PACIENTES:');
+            console.log(response.data);
             this.setState({
                 ...this.state,
-                patients:[]
+                patients:response.data
             })
         })
+        .catch(function (error) {
+            console.log(error);
+          });
     };
+
     onChangeHandler = (event)=>{
         patientService.getAll()
         .then((response)=>{
+            console.log('RESPUESTA GET ALL PACIENTES:');
+            console.log(response.data);
             this.setState({
                 ...this.state,
-                patients:[]
+                patients:response.data
             })
-        });
+        })
+        .catch(function (error) {
+            console.log(error);
+          });
         alert('refreshing list')
     };
 
     render(){
+        //sytles
         const div={
             padding:'15px',
             margin: '15px',
@@ -45,6 +57,31 @@ class patientList extends Component{
             height: '420px'
         };
 
+        //list patients (JSX)
+        let patients =this.state.patients;
+        let patientList;
+        //if empty list item saying 'no patients'
+        if(patients.length===0)patientList = <ListGroup.Item className='border'><p><strong>No hay pacientes ingresados</strong></p></ListGroup.Item>
+        
+        //else proper list item 
+        else{ patientList = this.state.patients.map(patient =>{
+            //default values of the icon set to male
+            let color={color:'blue'};
+            let icon=faMale;
+            //if female change those values to female
+            if(patient.sexo ==="f") {
+                color={color:'deeppink'};
+                icon =faFemale;
+                }
+            return(
+            <ListGroup.Item className='border' key={patient.id}>
+            <p><strong>Paciente: </strong>{patient.nombre} <FontAwesomeIcon icon={icon} size="lg"  style={color} /></p>
+            <p><strong>Edad: </strong>{patient.edad}</p>
+            <p><strong>Diagnostico: </strong>{patient.diagnostico}</p>
+            </ListGroup.Item>
+            )
+            });
+        }
         return(
             <div style={div}>
                 <h3 style={{textAlign: "center"}}>Pacientes ingresados</h3>
@@ -52,22 +89,7 @@ class patientList extends Component{
                 <Button  className= 'btn btn-light' onClick={this.onChangeHandler} >
                      <FontAwesomeIcon icon={faRedo} size="xs"  /></Button>
                 <ListGroup style={listGroup} className='border' >
-                <ListGroup.Item className='border'>
-                    <p><strong>Paciente: </strong>Jorge Sanhueza <FontAwesomeIcon icon={faMale} size="md"  style={{ color: 'blue' }} /></p>
-                    <p><strong>Fecha Nacimiento: </strong>03-10-97</p>
-                    
-                </ListGroup.Item>
-                <ListGroup.Item className='list-group-item-'>
-                    <p><strong>Paciente: </strong>Jaime Rodiguez <FontAwesomeIcon icon={faFemale} size="md"  style={{ color: 'deeppink' }} /></p>
-                    <p><strong>Fecha Nacimiento: </strong>01-01-14</p>
-                </ListGroup.Item>
-                <ListGroup.Item className='list-group-item-'>
-                    <p><strong>Paciente: </strong>Nacho
-                    <FontAwesomeIcon icon={faFemale} size="md"  style={{ color: 'deeppink' }} />
-                    <FontAwesomeIcon icon={faFemale} size="md"  style={{ color: 'blue' }} />
-                    </p>
-                    <p><strong>Fecha Nacimiento: </strong>01-01-39</p>
-                </ListGroup.Item>
+                {patientList}
                 </ListGroup>
             </div>
         )
