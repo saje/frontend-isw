@@ -14,8 +14,8 @@ class patientList extends Component{
     componentDidMount(){
         patientService.getAll()
         .then((response)=>{
-            console.log('RESPUESTA GET ALL PACIENTES:');
-            console.log(response.data);
+            // console.log('RESPUESTA GET ALL PACIENTES:');
+            // console.log(response.data);
             this.setState({
                 ...this.state,
                 patients:response.data
@@ -29,8 +29,8 @@ class patientList extends Component{
     onChangeHandler = (event)=>{
         patientService.getAll()
         .then((response)=>{
-            console.log('RESPUESTA GET ALL PACIENTES:');
-            console.log(response.data);
+            // console.log('RESPUESTA GET ALL PACIENTES:');
+            // console.log(response.data);
             this.setState({
                 ...this.state,
                 patients:response.data
