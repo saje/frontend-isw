@@ -2,7 +2,7 @@
 
 Proyecto de React Ingenieria de Software USM 2020-1,applicacion de gestión de pabellones y sillones de quimioterapia 
 
-## REquisitos
+## Requisitos
 Tener intalado node.
 
 ## Uso
