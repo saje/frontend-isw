@@ -1,5 +1,5 @@
 import axios from 'axios'
 export const api= axios.create({
-    baseURL: 'http://localhost:8080',
+    baseURL: 'https://backend-isw.herokuapp.com/',
     timeout: 20000
 })

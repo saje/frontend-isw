@@ -4,6 +4,18 @@ import { faMale,faFemale,faRedo } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {patientService} from '../../services'
 
+function getAge(dateString) 
+{
+    var today = new Date();
+    var birthDate = new Date(dateString);
+    var age = today.getFullYear() - birthDate.getFullYear();
+    var m = today.getMonth() - birthDate.getMonth();
+    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) 
+    {
+        age--;
+    }
+    return age;
+}
 class patientList extends Component{
     constructor(props){
         super(props)
@@ -73,10 +85,15 @@ class patientList extends Component{
                 color={color:'deeppink'};
                 icon =faFemale;
                 }
+            let fecha = new Date(patient.fechaNacimiento).getTime();
+            let fechahoy = new Date().getTime();
+            let edad= getAge(fecha)
+            
+            
             return(
             <ListGroup.Item className='border' key={patient.id}>
             <p><strong>Paciente: </strong>{patient.nombre} <FontAwesomeIcon icon={icon} size="lg"  style={color} /></p>
-            <p><strong>Edad: </strong>{patient.edad}</p>
+            <p><strong>Edad: </strong>{edad}</p>
             <p><strong>Diagnostico: </strong>{patient.diagnostico}</p>
             </ListGroup.Item>
             )
