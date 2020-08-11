@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
@@ -67,18 +66,3 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 ### `npm run build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
-=======
-# Sigi Pabellon
-
-Proyecto de React Ingenieria de Software USM 2020-1,applicacion de gestión de pabellones y sillones de quimioterapia 
-
-## Requisitos
-Tener intalado node.
-
-## Uso
-En carpeta de iswsalud para iniciar proyecto utilizar
-
-```
-npm start
-```
->>>>>>> 2ad49ec2efcaec0ca1d283c2f5e37159ed66aaf5
