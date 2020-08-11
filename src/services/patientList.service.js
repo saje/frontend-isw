@@ -11,9 +11,13 @@ function show (pacienteId){
 function create (data){
     return api.post(`${basePath}/paciente`,data)
 };
+function remove (pacienteId){
+    return api.post(`${basePath}/paciente/id=${pacienteId}`)
+};
 
 export const patientService ={
     getAll,
     show,
-    create
+    create,
+    remove
 };

@@ -68,6 +68,21 @@ class patientList extends Component{
           });
         alert('refreshing list')
     };
+    deleteHandler = (event)=>{
+        patientService.remove()
+        .then((response)=>{
+            // console.log('RESPUESTA GET ALL PACIENTES:');
+            // console.log(response.data);
+            this.setState({
+                ...this.state,
+                patients:response.data
+            })
+        })
+        .catch(function (error) {
+            console.log(error);
+          });
+        alert('refreshing list')
+    };
 
     render(){
         //sytles
@@ -110,6 +125,9 @@ class patientList extends Component{
             <p><strong>Paciente: </strong>{patient.nombre} <FontAwesomeIcon icon={icon} size="lg"  style={color} /></p>
             <p><strong>Edad: </strong>{edad}</p>
             <p><strong>Diagnostico: </strong>{patient.diagnostico}</p>
+            <Button variant="danger" type="submit" onClick={this.deleteHandler(patient.id)}>
+                Eliminar
+            </Button>
             </ListGroup.Item>
             )
             });

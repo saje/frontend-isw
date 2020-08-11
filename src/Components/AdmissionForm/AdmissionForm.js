@@ -43,7 +43,7 @@ class AdmissionForm extends Component{
             patientService.create(data)
             .then((response)=>console.log(response.data))
             .catch(error=> console.log(error));
-            location.reload()
+            window.location.reload(false);
         }
         else alert('rellene todos los campos');
     };
