@@ -43,6 +43,7 @@ class AdmissionForm extends Component{
             patientService.create(data)
             .then((response)=>console.log(response.data))
             .catch(error=> console.log(error));
+            location.reload()
         }
         else alert('rellene todos los campos');
     };
@@ -113,7 +114,6 @@ class AdmissionForm extends Component{
         let today=formatDate(date)
         return(
             <div style={styles}>
-                <p>{today}</p>
                 <h3 style={{textAlign: "center"}}> Ingreso de pacientes</h3>
                 <Form style={form} onSubmit={this.SubmitHandler}>
                 

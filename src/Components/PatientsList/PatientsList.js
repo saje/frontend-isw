@@ -51,6 +51,21 @@ class patientList extends Component{
         .catch(function (error) {
             console.log(error);
           });
+        //alert('refreshing list')
+    };
+    onChangeHandler = (event)=>{
+        patientService.getAll()
+        .then((response)=>{
+            // console.log('RESPUESTA GET ALL PACIENTES:');
+            // console.log(response.data);
+            this.setState({
+                ...this.state,
+                patients:response.data
+            })
+        })
+        .catch(function (error) {
+            console.log(error);
+          });
         alert('refreshing list')
     };
 
