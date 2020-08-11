@@ -53,35 +53,20 @@ class patientList extends Component{
           });
         //alert('refreshing list')
     };
-    onChangeHandler = (event)=>{
-        patientService.getAll()
+    deleteHandler = (paciente_id)=>{
+        
+        patientService.remove(paciente_id)
         .then((response)=>{
             // console.log('RESPUESTA GET ALL PACIENTES:');
             // console.log(response.data);
-            this.setState({
-                ...this.state,
-                patients:response.data
-            })
+            this.onChangeHandler()
         })
         .catch(function (error) {
-            console.log(error);
+            alert(error);
           });
-        alert('refreshing list')
-    };
-    deleteHandler = (event)=>{
-        patientService.remove()
-        .then((response)=>{
-            // console.log('RESPUESTA GET ALL PACIENTES:');
-            // console.log(response.data);
-            this.setState({
-                ...this.state,
-                patients:response.data
-            })
-        })
-        .catch(function (error) {
-            console.log(error);
-          });
-        alert('refreshing list')
+        //alert(paciente_id)
+        //window.location.reload(false);
+        
     };
 
     render(){
@@ -125,7 +110,7 @@ class patientList extends Component{
             <p><strong>Paciente: </strong>{patient.nombre} <FontAwesomeIcon icon={icon} size="lg"  style={color} /></p>
             <p><strong>Edad: </strong>{edad}</p>
             <p><strong>Diagnostico: </strong>{patient.diagnostico}</p>
-            <Button variant="danger" type="submit" onClick={this.deleteHandler(patient.id)}>
+            <Button variant="danger" type="submit" onClick={()=>this.deleteHandler(patient.id)}>
                 Eliminar
             </Button>
             </ListGroup.Item>
